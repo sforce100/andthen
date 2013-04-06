@@ -3,13 +3,17 @@ package com.andthen.screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class HelpScreen implements Screen{
@@ -19,7 +23,7 @@ public class HelpScreen implements Screen{
 	Stage stage;
 	Skin skin;
 	Texture tback;
-	
+	Label lhelp;
 	public HelpScreen(Game game){
 		this.game = game;
 		init();
@@ -73,6 +77,7 @@ public class HelpScreen implements Screen{
 	
 	
 	private void init(){
+		//返回主菜单的按钮
 		tback = new Texture(Gdx.files.internal("button1_480.png"));
 		NinePatch np = new NinePatch(tback, 7, 7, 9, 9);
 		back = new Button(np, np, np);
@@ -90,9 +95,15 @@ public class HelpScreen implements Screen{
 			}
 		});
 		
+	
+		lhelp = new Label("返回", new LabelStyle(new BitmapFont(), Color.RED), "返回");
+		lhelp.x = Gdx.graphics.getWidth()/2;
+		lhelp.y = Gdx.graphics.getHeight();
+		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
 		Gdx.input.setInputProcessor(stage);
 		stage.addActor(back);
+		stage.addActor(lhelp);
 	}
 
 }

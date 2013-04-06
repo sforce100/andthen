@@ -30,6 +30,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -42,8 +43,9 @@ public class MainMenuScreen implements Screen {
 	Button exit;
 	Stage stage;
 	Skin skin;
-	Label lab;
+	Label lmain;
 	Texture startImg1,startImg2,startImg3,tex;
+	BitmapFont font;
 	public MainMenuScreen (Game game) {
 		this.game = game;
 		init();
@@ -95,6 +97,7 @@ public class MainMenuScreen implements Screen {
 	}
 	
 	private void init(){
+		font = new BitmapFont(Gdx.files.internal("tem.fnt"), false);
 //		skin = new Skin();
 //		skin.add("start", new Texture("12.png"));
 		startImg1 = new Texture(Gdx.files.internal("12.png"));
@@ -158,7 +161,12 @@ public class MainMenuScreen implements Screen {
 				
 			}});
 		
-//		lab = new Label("sadfsdafsadljfsldkfjfajdsdfsajslkdjfasdfs",);
+		lmain = new Label("主菜单", new LabelStyle(font, Color.WHITE), "主菜单");
+//		lmain.setText("主菜单");
+		lmain.width = 200f;
+		lmain.height = 50f;
+		lmain.x = 200;
+		lmain.y = 200;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
 		Gdx.input.setInputProcessor(stage);
@@ -166,5 +174,6 @@ public class MainMenuScreen implements Screen {
 		stage.addActor(option);
 		stage.addActor(help);
 		stage.addActor(exit);
+		stage.addActor(lmain);
 	}
 }
