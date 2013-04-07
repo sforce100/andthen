@@ -2,9 +2,9 @@ package com.andthen.screen;
 
 import com.badlogic.gdx.Game;
 
-public class GameScreen extends AbstractScreen{
+public class OptionScreen extends AbstractScreen{
 
-	public GameScreen(Game game) {
+	public OptionScreen(Game game) {
 		super(game);
 		// TODO Auto-generated constructor stub
 	}

@@ -10,18 +10,18 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class Loading implements Screen{
+public class Loading extends AbstractScreen{
 	
 	ProgressBar bar;
 	AnimalActor animal;
 	Stage stage;
 	AssetManager manager;
 	boolean hasini;
-	Game game;
+
 	public Loading(Game game) {
 		// TODO Auto-generated method stub
 		
-		this.game = game;
+		super(game);
 		
 		bar = new ProgressBar(0, 0);
 		//创建新舞台
