@@ -1,6 +1,8 @@
 package com.andthen.main;
 
 import android.os.Bundle;
+
+import com.andthen.tool.AssetTool;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 
 public class AndThenAndroid extends AndroidApplication {
