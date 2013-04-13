@@ -1,5 +1,6 @@
 package com.andthen.screen;
 
+import com.andthen.main.AndThenGame;
 import com.andthen.tool.TempTexture;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -21,7 +22,7 @@ public class LevelSelect1 extends AbstractScreen{
 	Stage stage;
 	Label lmain;
 	BitmapFont font;
-	public LevelSelect1(Game game){
+	public LevelSelect1(AndThenGame game){
 		super(game);
 		init();
 	}

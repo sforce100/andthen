@@ -17,12 +17,17 @@
 package com.andthen.screen;
 
 
-import com.badlogic.gdx.Game;
+import android.app.Activity;
+
+import com.andthen.main.AndThenGame;
+import com.andthen.ui.ExitDialog;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -32,9 +37,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 public class MainMenuScreen extends AbstractScreen {
-
+	
 	Button start;
 	Button option;
 	Button help;
@@ -44,9 +50,12 @@ public class MainMenuScreen extends AbstractScreen {
 	Label lmain,loption,lhelp,lstart,lexit;
 	Texture startImg1,startImg2,startImg3,tex;
 	BitmapFont font;
-	public MainMenuScreen (Game game) {
+	ExitDialog exitDialog;
+	boolean isPressKeyBack = false;
+	public MainMenuScreen (AndThenGame game) {
 		super(game);
 		init();
+		
 	}
 	
 	@Override
@@ -74,6 +83,16 @@ public class MainMenuScreen extends AbstractScreen {
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();		
+		
+		if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+			Gdx.app.log("mainscreen", "presskey back");
+			isPressKeyBack = true;
+			//exit window
+			exitDialog = new ExitDialog(stage, game.activity);
+			//�ı䰴ť״̬
+			buttonState(exitDialog.hasDialog);
+			stage.addActor(exitDialog.makeup());
+		}
 	}
 
 	@Override
@@ -143,7 +162,6 @@ public class MainMenuScreen extends AbstractScreen {
 		loption.width=100f;
 		loption.height=32f;
 		
-		
 		help = new Button( new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f)); 
 		help.x=10;
 		help.y=108;
@@ -204,5 +222,19 @@ public class MainMenuScreen extends AbstractScreen {
 		stage.addActor(loption);
 		stage.addActor(lstart);
 		
+	}
+	
+	private void buttonState(boolean hasDialog){
+		if(hasDialog){
+			start.touchable = false;
+			option.touchable = false;
+			help.touchable = false;
+			exit.touchable = false;
+		}else{
+			start.touchable = true;
+			option.touchable = true;
+			help.touchable = true;
+			exit.touchable = true;
+		}
 	}
 }

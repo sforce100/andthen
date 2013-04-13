@@ -1,5 +1,6 @@
 package com.andthen.screen;
 
+import com.andthen.main.AndThenGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -24,7 +25,7 @@ public class HelpScreen extends AbstractScreen{
 	Texture tback;
 	Label lhelp, lmain;
 	BitmapFont font;
-	public HelpScreen(Game game){
+	public HelpScreen(AndThenGame game){
 		super(game);
 		init();
 	}
