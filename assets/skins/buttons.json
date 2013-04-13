@@ -1,14 +1,13 @@
 {
 	resources: {
 		com.badlogic.gdx.graphics.g2d.NinePatch: {
-			tempButtonImg: { x: 7, y: 7, width: 9, height: 32 }
+			tempButtonImg: { x: 0, y: 0, width: 150, height: 100 }
 		}
 	},
 	styles: {
-		com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle: {
+		com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 			default: {
-				up: tempButtonImg, down: tempButtonImg, checked: tempButtonImg,
-				pressedOffsetX: 0f, pressedOffsetY: 0f, unpressedOffsetX: 0f, unpressedOffsetY:0f
+				up: tempButtonImg, down: tempButtonImg, checked: tempButtonImg
 			}
 		}
 	}

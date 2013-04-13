@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class LevelSelect2 extends AbstractScreen{
 
@@ -21,6 +22,7 @@ public class LevelSelect2 extends AbstractScreen{
 	Stage stage;
 	Label lmain;
 	BitmapFont font;
+	Skin skin;
 	public LevelSelect2(AndThenGame game){
 		super(game);
 		init();
@@ -72,10 +74,12 @@ public class LevelSelect2 extends AbstractScreen{
 	}
 	
 	private void init(){
+		skin = new Skin(Gdx.files.internal("skins/buttons.json"),Gdx.files.internal("button1_480.png"));
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 
 		NinePatch n = TempTexture.getButtonTexture();
-		back = new Button(n, n, n);
+//		back = new Button(n, n, n);
+		back = new Button(skin);
 		back.x = 10;
 		back.y = 10;
 		back.width = 100;

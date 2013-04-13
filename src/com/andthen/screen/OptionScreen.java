@@ -89,9 +89,11 @@ public class OptionScreen extends AbstractScreen{
 			@Override
 			public void changed(Slider slider, float value) {
 				// TODO Auto-generated method stub
+				Gdx.app.log("option", value+"");
 				game.gameOption.setMusicLength(value);
 			}
 		});
+		music.width = 800f;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
 		Gdx.input.setInputProcessor(stage);		
