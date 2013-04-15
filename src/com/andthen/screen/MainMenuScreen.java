@@ -16,11 +16,9 @@
 
 package com.andthen.screen;
 
-import android.graphics.drawable.NinePatchDrawable;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,22 +28,24 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class MainMenuScreen implements Screen {
-	Game game;
+public class MainMenuScreen extends AbstractScreen {
+
 	Button start;
 	Button option;
 	Button help;
 	Button exit;
 	Stage stage;
 	Skin skin;
-	Label lab;
+	Label lmain,loption,lhelp,lstart,lexit;
 	Texture startImg1,startImg2,startImg3,tex;
+	BitmapFont font;
 	public MainMenuScreen (Game game) {
-		this.game = game;
+		super(game);
 		init();
 	}
 	
@@ -95,21 +95,13 @@ public class MainMenuScreen implements Screen {
 	}
 	
 	private void init(){
-//		skin = new Skin();
-//		skin.add("start", new Texture("12.png"));
-		startImg1 = new Texture(Gdx.files.internal("12.png"));
-		startImg2 = new Texture(Gdx.files.internal("22.png"));
-		startImg3 = new Texture(Gdx.files.internal("23.png"));
-		 
-		NinePatch path1 = new NinePatch(startImg1, 0, 0, 10, 10);
-		NinePatch path2 = new NinePatch(startImg2, 0, 0, 10, 10);
-		NinePatch path3 = new NinePatch(startImg3, 0, 0, 10, 10);
-		 
-		start = new Button(new Button.ButtonStyle(path1, path2, path3, 0,0,100,100));
-//		start = new Button(new ButtonStyle(), "Start");
-//		tex = new Texture(Gdx.files.internal("button1_480.png"));
-//		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
-//		start = new Button( new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f)); 
+		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
+		tex = new Texture(Gdx.files.internal("button1_480.png"));
+		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
+		
+		
+		//start button
+		start = new Button(new Button.ButtonStyle(n1, n1, n1, 0,0,100,100));
 		start.x=10;
 		start.y=10;
 		start.width=100f;
@@ -120,26 +112,41 @@ public class MainMenuScreen implements Screen {
 			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
-				
+				game.setScreen(new LevelSelect1(game));
 			}});
 		
-		option = new Button(new ButtonStyle(), "Start");
+		lstart = new Label("start", new LabelStyle(font, Color.WHITE));
+		lstart.x=110;
+		lstart.y=10;
+		lstart.width=100f;
+		lstart.height=32f;
+		
+		
+		//option button
+		option = new Button(new Button.ButtonStyle(n1, n1, n1, 0,0,100,100));
 		option.setClickListener(new ClickListener(){
 
 			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
-				
+				game.setScreen(new OptionScreen(game));
 			}});
 		
+		option.x = 10;
+		option.y = 70;
+		option.width=100f;
+		option.height=32f;	
+		
+		loption = new Label("option", new LabelStyle(font, Color.WHITE));
+		loption.x=110;
+		loption.y=70;
+		loption.width=100f;
+		loption.height=32f;
 		
 		
-		
-		tex = new Texture(Gdx.files.internal("button1_480.png"));
-		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
 		help = new Button( new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f)); 
 		help.x=10;
-		help.y=50;
+		help.y=108;
 		help.width=100f;
 		help.height=32f;
 		help.setClickListener(new ClickListener(){
@@ -149,7 +156,19 @@ public class MainMenuScreen implements Screen {
 				// TODO Auto-generated method stub
 				game.setScreen(new HelpScreen(game));
 			}});
-		exit = new Button(new ButtonStyle(), "Start");
+		
+		lhelp = new Label("help", new LabelStyle(font, Color.WHITE));
+		lhelp.x=110;
+		lhelp.y=108;
+		lhelp.width=100f;
+		lhelp.height=32f;
+		
+		
+		exit = new Button(new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f));
+		exit.x=10;
+		exit.y=146;
+		exit.width=100f;
+		exit.height=32f;
 		exit.setClickListener(new ClickListener(){
 
 			@Override
@@ -158,7 +177,20 @@ public class MainMenuScreen implements Screen {
 				
 			}});
 		
-//		lab = new Label("sadfsdafsadljfsldkfjfajdsdfsajslkdjfasdfs",);
+		lexit = new Label("exit", new LabelStyle(font, Color.WHITE));
+		lexit.x=110;
+		lexit.y=146;
+		lexit.width=100f;
+		lexit.height=32f;
+	
+		
+		
+		lmain = new Label("MainScreen", new LabelStyle(font, Color.WHITE));
+//		lmain.setText("Ö÷²Ëµ¥");
+		lmain.width = 200f;
+		lmain.height = 50f;
+		lmain.x = 200;
+		lmain.y = 200;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
 		Gdx.input.setInputProcessor(stage);
@@ -166,5 +198,11 @@ public class MainMenuScreen implements Screen {
 		stage.addActor(option);
 		stage.addActor(help);
 		stage.addActor(exit);
+		stage.addActor(lmain);
+		stage.addActor(lhelp);
+		stage.addActor(lexit);
+		stage.addActor(loption);
+		stage.addActor(lstart);
+		
 	}
 }
