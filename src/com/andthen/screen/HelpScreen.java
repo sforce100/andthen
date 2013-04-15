@@ -1,5 +1,6 @@
 package com.andthen.screen;
 
+import com.andthen.main.AndThenGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -24,7 +25,7 @@ public class HelpScreen extends AbstractScreen{
 	Texture tback;
 	Label lhelp, lmain;
 	BitmapFont font;
-	public HelpScreen(Game game){
+	public HelpScreen(AndThenGame game){
 		super(game);
 		init();
 	}
@@ -71,7 +72,7 @@ public class HelpScreen extends AbstractScreen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);		
 	}
 	
 	
@@ -110,7 +111,6 @@ public class HelpScreen extends AbstractScreen{
 		lmain.y = 200;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
-		Gdx.input.setInputProcessor(stage);
 		stage.addActor(back);
 		stage.addActor(lhelp);
 		stage.addActor(lmain);

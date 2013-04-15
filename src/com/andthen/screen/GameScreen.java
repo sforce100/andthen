@@ -1,7 +1,9 @@
 package com.andthen.screen;
 
+
 import com.andthen.map.GameMap;
-import com.andthen.map.MapModel;
+import com.andthen.map.MapMode;
+import com.andthen.main.AndThenGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -13,7 +15,7 @@ public class GameScreen extends AbstractScreen {
 	private GameMap gamemap;
 	private MapModel mm;
 
-	public GameScreen(Game game) {
+	public GameScreen(AndThenGame game) {
 		super(game);
 
 		// TODO Auto-generated constructor stub

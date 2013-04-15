@@ -2,6 +2,7 @@ package com.andthen.screen;
 
 import com.andthen.actor.AnimalActor;
 import com.andthen.actor.ProgressBar;
+import com.andthen.main.AndThenGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -18,7 +19,7 @@ public class Loading extends AbstractScreen{
 	AssetManager manager;
 	boolean hasini;
 
-	public Loading(Game game) {
+	public Loading(AndThenGame game) {
 		// TODO Auto-generated method stub
 		
 		super(game);
@@ -94,7 +95,7 @@ public class Loading extends AbstractScreen{
            animal.iniResource();
 //	           stage.addActor(animal);
            hasini=true;
-           this.game.setScreen(new MainMenuScreen(game));
+           this.game.setScreen(game.getMenuScreen());
 		}
 		
 	   //我们做一个标记，看看未加载（Queued）完成的资源和已载入完成的资源的数量（Loaded）
