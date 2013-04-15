@@ -23,6 +23,7 @@ import com.andthen.main.AndThenGame;
 import com.andthen.ui.ExitDialog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
@@ -88,7 +89,7 @@ public class MainMenuScreen extends AbstractScreen {
 			Gdx.app.log("mainscreen", "presskey back");
 			isPressKeyBack = true;
 			//exit window
-			exitDialog = new ExitDialog(stage, game.activity);
+			exitDialog = new ExitDialog(stage, game.getActivity());
 			//改变按钮状态
 			buttonState(exitDialog.hasDialog);
 			stage.addActor(exitDialog.makeup());
@@ -110,12 +111,13 @@ public class MainMenuScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);
 	}
 	
 	private void init(){
+		FileHandle  png = Gdx.files.internal("button1_480.png");
+		tex = new Texture(png);
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
-		tex = new Texture(Gdx.files.internal("button1_480.png"));
 		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
 		
 		
@@ -126,13 +128,7 @@ public class MainMenuScreen extends AbstractScreen {
 		start.width=100f;
 		start.height=32f;
 		
-		start.setClickListener(new ClickListener(){
-
-			@Override
-			public void click(Actor arg0, float arg1, float arg2) {
-				// TODO Auto-generated method stub
-				game.setScreen(new LevelSelect1(game));
-			}});
+		
 		
 		lstart = new Label("start", new LabelStyle(font, Color.WHITE));
 		lstart.x=110;
@@ -143,13 +139,7 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		//option button
 		option = new Button(new Button.ButtonStyle(n1, n1, n1, 0,0,100,100));
-		option.setClickListener(new ClickListener(){
 
-			@Override
-			public void click(Actor arg0, float arg1, float arg2) {
-				// TODO Auto-generated method stub
-				game.setScreen(new OptionScreen(game));
-			}});
 		
 		option.x = 10;
 		option.y = 70;
@@ -167,13 +157,7 @@ public class MainMenuScreen extends AbstractScreen {
 		help.y=108;
 		help.width=100f;
 		help.height=32f;
-		help.setClickListener(new ClickListener(){
 
-			@Override
-			public void click(Actor arg0, float arg1, float arg2) {
-				// TODO Auto-generated method stub
-				game.setScreen(new HelpScreen(game));
-			}});
 		
 		lhelp = new Label("help", new LabelStyle(font, Color.WHITE));
 		lhelp.x=110;
@@ -187,13 +171,7 @@ public class MainMenuScreen extends AbstractScreen {
 		exit.y=146;
 		exit.width=100f;
 		exit.height=32f;
-		exit.setClickListener(new ClickListener(){
-
-			@Override
-			public void click(Actor arg0, float arg1, float arg2) {
-				// TODO Auto-generated method stub
-				
-			}});
+		
 		
 		lexit = new Label("exit", new LabelStyle(font, Color.WHITE));
 		lexit.x=110;
@@ -210,8 +188,9 @@ public class MainMenuScreen extends AbstractScreen {
 		lmain.x = 200;
 		lmain.y = 200;
 		
+		operator();
+		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
-		Gdx.input.setInputProcessor(stage);
 		stage.addActor(start);
 		stage.addActor(option);
 		stage.addActor(help);
@@ -222,6 +201,43 @@ public class MainMenuScreen extends AbstractScreen {
 		stage.addActor(loption);
 		stage.addActor(lstart);
 		
+	}
+	
+	private void operator(){
+		Gdx.input.setInputProcessor(stage);
+		option.setClickListener(new ClickListener(){
+
+			@Override
+			public void click(Actor arg0, float arg1, float arg2) {
+				// TODO Auto-generated method stub
+				game.setScreen(game.getOptionScreen());
+			}});
+		
+		help.setClickListener(new ClickListener(){
+
+			@Override
+			public void click(Actor arg0, float arg1, float arg2) {
+				// TODO Auto-generated method stub
+				game.setScreen(game.getHelpScreen());
+			}});
+		
+		start.setClickListener(new ClickListener(){
+
+			@Override
+			public void click(Actor arg0, float arg1, float arg2) {
+				// TODO Auto-generated method stub
+				game.setScreen(game.getLevelSelect1());
+			}});
+		
+		exit.setClickListener(new ClickListener(){
+
+			@Override
+			public void click(Actor arg0, float arg1, float arg2) {
+				// TODO Auto-generated method stub
+                //关闭程序
+                game.getActivity().finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+			}});
 	}
 	
 	private void buttonState(boolean hasDialog){

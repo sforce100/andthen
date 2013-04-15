@@ -68,7 +68,7 @@ public class ShopScreen extends AbstractScreen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);		
 	}
 	
 	private void init(){
@@ -110,7 +110,6 @@ public class ShopScreen extends AbstractScreen{
 		lmain.y = 200;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
-		Gdx.input.setInputProcessor(stage);
 		stage.addActor(back);
 		stage.addActor(next);
 		stage.addActor(lmain);

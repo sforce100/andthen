@@ -74,7 +74,7 @@ public class OptionScreen extends AbstractScreen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);			
 	}
 	
 	private void init(){
@@ -83,20 +83,19 @@ public class OptionScreen extends AbstractScreen{
 		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
 		
 		music = new Slider(0f, 1f, 0.05f, new SliderStyle(n1, texReg));
-		music.setValue(game.gameOption.getMusicLength());
+		music.setValue(game.getGameOption().getMusicLength());
 		music.setValueChangedListener(new ValueChangedListener() {
 			
 			@Override
 			public void changed(Slider slider, float value) {
 				// TODO Auto-generated method stub
 				Gdx.app.log("option", value+"");
-				game.gameOption.setMusicLength(value);
+				game.getGameOption().setMusicLength(value);
 			}
 		});
 		music.width = 800f;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
-		Gdx.input.setInputProcessor(stage);		
 		stage.addActor(music);
 	}
 	

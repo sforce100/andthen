@@ -95,7 +95,7 @@ public class Loading extends AbstractScreen{
            animal.iniResource();
 //	           stage.addActor(animal);
            hasini=true;
-           this.game.setScreen(new MainMenuScreen(game));
+           this.game.setScreen(game.getMenuScreen());
 		}
 		
 	   //我们做一个标记，看看未加载（Queued）完成的资源和已载入完成的资源的数量（Loaded）
