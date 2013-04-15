@@ -1,5 +1,6 @@
 package com.andthen.screen;
 
+import com.andthen.main.AndThenGame;
 import com.andthen.tool.TempTexture;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class LevelSelect2 extends AbstractScreen{
 
@@ -20,7 +22,8 @@ public class LevelSelect2 extends AbstractScreen{
 	Stage stage;
 	Label lmain;
 	BitmapFont font;
-	public LevelSelect2(Game game){
+	Skin skin;
+	public LevelSelect2(AndThenGame game){
 		super(game);
 		init();
 	}
@@ -67,14 +70,16 @@ public class LevelSelect2 extends AbstractScreen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);
 	}
 	
 	private void init(){
+		skin = new Skin(Gdx.files.internal("skins/buttons.json"),Gdx.files.internal("button1_480.png"));
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 
 		NinePatch n = TempTexture.getButtonTexture();
-		back = new Button(n, n, n);
+//		back = new Button(n, n, n);
+		back = new Button(skin);
 		back.x = 10;
 		back.y = 10;
 		back.width = 100;
@@ -109,7 +114,6 @@ public class LevelSelect2 extends AbstractScreen{
 		lmain.y = 200;
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
-		Gdx.input.setInputProcessor(stage);
 		stage.addActor(back);
 		stage.addActor(next);
 		stage.addActor(lmain);

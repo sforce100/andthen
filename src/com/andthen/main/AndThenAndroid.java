@@ -11,7 +11,13 @@ public class AndThenAndroid extends AndroidApplication {
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initialize(new AndThenActivity(), false);
+		initialize(new AndThenGame(this), false);
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+//		super.onBackPressed();
 	}
 	
 }
