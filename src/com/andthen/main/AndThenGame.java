@@ -1,6 +1,7 @@
 package com.andthen.main;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 
 import com.andthen.actor.AnimalActor;
 import com.andthen.actor.ProgressBar;
@@ -34,8 +35,11 @@ public class AndThenGame extends Game {
 	private LevelSelect2 levelSelect2;
 	private ShopScreen shopScreen;
 	
+	private SharedPreferences sp;
+	
 	public AndThenGame(Activity activity){
 		this.activity = activity;
+		sp = activity.getPreferences(Activity.MODE_PRIVATE);
 		gameOption = new GameOption();
 	}
 	@Override

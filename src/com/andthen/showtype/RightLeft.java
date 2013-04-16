@@ -7,7 +7,7 @@ public class RightLeft implements ShowType {
 	float firstx, firsty;
 	float nextx, nexty;
 	float referlong;
-	int perx = 4, pery = 8;
+	int perx = 1, pery = 2;
 	int distance = 100, high = 16;
 	Vector2 position = new Vector2();
 	boolean highlimit;
