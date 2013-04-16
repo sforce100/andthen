@@ -2,7 +2,7 @@ package com.andthen.screen;
 
 
 import com.andthen.map.GameMap;
-import com.andthen.map.MapMode;
+import com.andthen.map.MapModel;
 import com.andthen.main.AndThenGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
