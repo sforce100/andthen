@@ -30,11 +30,11 @@ public class RightLeft implements ShowType {
 			highlimit = true;
 
 		if (highlimit)
-			nexty += 4;
+			nexty += pery;
 		else
-			nexty -= 4;
+			nexty -= pery;
 
-		nextx -= 2;
+		nextx -= perx;
 
 		if (nextx < firstx-distance) {
 			state = 2;
@@ -55,11 +55,11 @@ public class RightLeft implements ShowType {
 			highlimit = true;
 
 		if (highlimit)
-			nexty += 4;
+			nexty += pery;
 		else
-			nexty -= 4;
+			nexty -= pery;
 
-		nextx += 2;
+		nextx += perx;
 
 		if (nextx > firstx) {
 			state = 4;
