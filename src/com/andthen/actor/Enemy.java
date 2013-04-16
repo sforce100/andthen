@@ -64,15 +64,18 @@ public class Enemy extends Actor {
 
 	//更新座標并选择动作
 	private void change() {
-		float newx=0f,newy=0f;
+		float newx=this.x,newy=this.y;
+		Vector2 p = new Vector2();
 		switch (st.getState()) {
-		case 1:                              
-			newx = st.show().x;
-			newy = st.show().y;
+		case 1:         
+			p=st.show();
+			newx = p.x;
+			newy = p.y;
 			break;
 		case 2:
-			newx = st.hide().x;
-			newy = st.hide().y;
+			p=st.hide();
+			newx = p.x;
+			newy = p.y;
 			break;
 		case 3:
 			break;
