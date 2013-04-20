@@ -52,11 +52,31 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 //		USERNAME+" varchar(20),"+
 //		PASSWORD+" varchar(20)"+
 //		")");
+		db.execSQL("CREATE TABLE "+
+		"gun ("+
+		"id integer primary key,"+
+		"damage integer,"+ 
+		"firerate integer,"+
+		"accuracy integer,"+
+		"total integer, sunandsteel, integer, residue_bullet integer,"+
+		"gun_cost integer, bullet_cost integer"+
+		"name varchar2(10),"+
+		"lock integer,"+
+		"fill_time integer)");
+		
+		db.execSQL("CREATE TABLE armor (name varchar2(10), cost integer, defence integer, lock integer)");
+
 	    Log.e("Database","onCreate");
 	}
 	
+	private void initData(){
+		
+	}
+	
+	
 	private void dropTables(SQLiteDatabase db){
 // example:
-//		db.execSQL("DROP TABLE IF EXISTS " + TB_NAME); 
+		db.execSQL("DROP TABLE IF EXISTS gun"); 
+		db.execSQL("DROP TABLE IF EXISTS armor"); 
 	}
 }
