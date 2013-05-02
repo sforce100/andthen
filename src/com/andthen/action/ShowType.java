@@ -1,4 +1,4 @@
-package com.andthen.showtype;
+package com.andthen.action;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -12,4 +12,11 @@ public interface ShowType {
 	
 	public int getState();
 
+	public void setState(int state);
+	
+	public long getFirebegin() ;
+
+	public void setFirebegin(long firebegin);
+
+	
 }
