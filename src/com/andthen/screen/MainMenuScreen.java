@@ -59,25 +59,21 @@ public class MainMenuScreen extends AbstractScreen {
 		
 	}
 	
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		stage.dispose();
 		skin.dispose();
 	}
 
-	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void render(float arg0) {
 		// TODO Auto-generated method stub
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -96,19 +92,16 @@ public class MainMenuScreen extends AbstractScreen {
 		}
 	}
 
-	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void show() {
 		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(stage);
@@ -207,7 +200,6 @@ public class MainMenuScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(stage);
 		option.setClickListener(new ClickListener(){
 
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
 				game.setScreen(game.getOptionScreen());
@@ -215,7 +207,6 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		help.setClickListener(new ClickListener(){
 
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
 				game.setScreen(game.getHelpScreen());
@@ -223,7 +214,6 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		start.setClickListener(new ClickListener(){
 
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
 				game.setScreen(game.getLevelSelect1());
@@ -231,7 +221,6 @@ public class MainMenuScreen extends AbstractScreen {
 		
 		exit.setClickListener(new ClickListener(){
 
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
                 //¹Ø±Õ³ÌÐò

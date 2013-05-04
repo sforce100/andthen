@@ -10,6 +10,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -24,7 +25,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	private GameMap gamemap;
 	private MapModel mm;
 	private int x0,y0,x1,y1;
-	Button back;
+	Button fire;
 	
 
 
@@ -36,25 +37,21 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		stage.dispose();
 	}
 
-	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void render(float arg0) {
 		// TODO Auto-generated method stub
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -68,19 +65,16 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 
 	}
 
-	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void show() {
 		// TODO Auto-generated method stub
 		// 
@@ -102,15 +96,13 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		
 		
 		
-		NinePatch n = TempTexture.getButtonTexture();
-		back = new Button(n, n, n);
-		back.x = Gdx.graphics.getWidth()-110;;
-		back.y = 10;
-		back.width = 100;
-		back.height = 32;
-		back.setClickListener(new ClickListener() {
+		fire = new Button(new TextureRegion(game.getUiresource(), 124, 281, 62, 62), new TextureRegion(game.getUiresource(), 186, 281, 62, 62));
+		fire.x = Gdx.graphics.getWidth()-110;;
+		fire.y = 10;
+		fire.width = 100;
+		fire.height = 100;
+		fire.setClickListener(new ClickListener() {
 			
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
 				gamemap.fire();
@@ -128,35 +120,30 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		  multiplexer.addProcessor(this);
 			 
 			 Gdx.input.setInputProcessor(multiplexer);
-			 stage.addActor(back);
+			 stage.addActor(fire);
 
 	}
 
-	@Override
 	public boolean keyDown(int arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean keyTyped(char arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean keyUp(int arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean scrolled(int arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean touchDown(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 
@@ -168,7 +155,6 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		return true;
 	}
 
-	@Override
 	public boolean touchDragged(int arg0, int arg1, int pointer) {
 		// TODO Auto-generated method stub
 
@@ -185,13 +171,11 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		
 	}
 
-	@Override
 	public boolean touchMoved(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean touchUp(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 		return false;

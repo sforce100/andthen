@@ -27,25 +27,21 @@ public class OptionScreen extends AbstractScreen{
 		init();
 	}
 
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void render(float arg0) {
 		// TODO Auto-generated method stub
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -59,19 +55,16 @@ public class OptionScreen extends AbstractScreen{
 		}
 	}
 
-	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void show() {
 		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(stage);			
@@ -86,7 +79,6 @@ public class OptionScreen extends AbstractScreen{
 		music.setValue(game.getGameOption().getMusicLength());
 		music.setValueChangedListener(new ValueChangedListener() {
 			
-			@Override
 			public void changed(Slider slider, float value) {
 				// TODO Auto-generated method stub
 				Gdx.app.log("option", value+"");

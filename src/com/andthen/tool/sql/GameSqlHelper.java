@@ -61,10 +61,12 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 		"total integer, sunandsteel, integer, residue_bullet integer,"+
 		"gun_cost integer, bullet_cost integer"+
 		"name varchar2(10),"+
-		"lock integer,"+
+		"is_lock integer,"+
 		"fill_time integer)");
 		
-		db.execSQL("CREATE TABLE armor (name varchar2(10), cost integer, defence integer, lock integer)");
+		db.execSQL("CREATE TABLE armor (name varchar2(10), cost integer, defence integer, is_lock integer, residue integer)");
+		
+		db.execSQL("CREATE TABLE map (level integer, num integer, is_lock integer, get_star integer, req_star integer)");
 
 	    Log.e("Database","onCreate");
 	}
@@ -78,5 +80,6 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 // example:
 		db.execSQL("DROP TABLE IF EXISTS gun"); 
 		db.execSQL("DROP TABLE IF EXISTS armor"); 
+		db.execSQL("DROP TABLE IF EXISTS map");
 	}
 }

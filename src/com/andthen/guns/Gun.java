@@ -9,7 +9,10 @@ public class Gun {
 	int magazines;        //弹夹容量
 	int maxsize;          //最大携带量
 	int maxleft;          //玩家携带量
-	
+	int is_lock;
+	int gun_cost;
+	int bullet_cost;
+	String name;
 	String texture;
 	
 	public Gun(){
@@ -83,6 +86,38 @@ public class Gun {
 
 	public void setReloadtime(int reloadtime) {
 		this.reloadtime = reloadtime;
+	}
+
+	public int getIs_lock() {
+		return is_lock;
+	}
+
+	public void setIs_lock(int is_lock) {
+		this.is_lock = is_lock;
+	}
+
+	public int getGun_cost() {
+		return gun_cost;
+	}
+
+	public void setGun_cost(int gun_cost) {
+		this.gun_cost = gun_cost;
+	}
+
+	public int getBullet_cost() {
+		return bullet_cost;
+	}
+
+	public void setBullet_cost(int bullet_cost) {
+		this.bullet_cost = bullet_cost;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -32,7 +34,11 @@ public class Player extends Actor {
 	//换弹时间
 	long reloadbegin; //换弹开始时间
 	int delay = 0;  //换弹标识
-
+	
+	private Texture uiresource;
+	Image enemyImg, armorImg, hpImg;
+	Label emenyLab, armorLab, hpLab;
+	BitmapFont font;
 	public Player(float x, float y) {
 		this.x = x;
 		this.y = y;
@@ -60,7 +66,11 @@ public class Player extends Actor {
 		maxleft = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 		hp = new BitmapFont(Gdx.files.internal("font.fnt"), false);
         def= new BitmapFont(Gdx.files.internal("font.fnt"), false);
-        }
+         
+        font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
+        initUi();
+       
+	}
 
 	// 获取坐标
 	public Vector2 getposition() {
@@ -120,12 +130,24 @@ public class Player extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float arg1) {
+		
 		batch.draw(guntexture, this.x, this.y);
 		bleft.draw(batch, "" + bulletleft, 20, 40);
 		maxsize.draw(batch, "" + gun.getMaxsize(), 20, 60);
 		maxleft.draw(batch, "" + gun.getMaxleft(), 20, 80);
-		hp.draw(batch, "" + health, Gdx.graphics.getWidth()-50, Gdx.graphics.getHeight()-20);
-		def.draw(batch, "" + defense, Gdx.graphics.getWidth()-150,Gdx.graphics.getHeight()-20);
+		
+		hpImg.draw(batch, 100);
+		armorImg.draw(batch, 100);
+		enemyImg.draw(batch, 100);
+//		hpLab.setText(health+"");
+//		hpLab.x = Gdx.graphics.getWidth()-40;
+//		hpLab.y = Gdx.graphics.getHeight()-40;
+//		hpLab.width = 10;
+//		hpLab.height = 10;
+//		hpLab.draw(batch, 100);
+		hp.draw(batch, "" + health, Gdx.graphics.getWidth()-70, Gdx.graphics.getHeight()-20);
+		
+		def.draw(batch, "" + defense, Gdx.graphics.getWidth()-200,Gdx.graphics.getHeight()-20);
 
 		//装弹延时
 		if (delay == 1) {
@@ -141,6 +163,28 @@ public class Player extends Actor {
 	public Actor hit(float arg0, float arg1) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private void initUi(){
+		 uiresource = new Texture(Gdx.files.internal("ui.png"));
+	     hpImg = new Image(new TextureRegion(uiresource, 203,219, 79,36));
+//	     hpLab = new Label("100", new LabelStyle(font, Color.WHITE));
+	     hpImg.x = Gdx.graphics.getWidth()-100;
+		 hpImg.y = Gdx.graphics.getHeight()-50;
+		 hpImg.width = 80;
+		 hpImg.height = 40;
+		 
+		 armorImg = new Image(new TextureRegion(uiresource, 282,219, 79,36));
+		 armorImg.x = Gdx.graphics.getWidth()-250;
+		 armorImg.y = Gdx.graphics.getHeight()-50;
+		 armorImg.width = 80;
+		 armorImg.height = 40;
+//		 
+		 enemyImg = new Image(new TextureRegion(uiresource, 124,219, 79,36));
+		 enemyImg.x = 5;
+		 enemyImg.y = Gdx.graphics.getHeight()-50;
+		 enemyImg.width = 80;
+		 enemyImg.height = 40;
 	}
 
 	public Gun getGun() {

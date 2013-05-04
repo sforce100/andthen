@@ -30,25 +30,21 @@ public class HelpScreen extends AbstractScreen{
 		init();
 	}
 	
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		stage.dispose();
 	}
 
-	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void render(float arg0) {
 		// TODO Auto-generated method stub
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -57,19 +53,16 @@ public class HelpScreen extends AbstractScreen{
 		stage.draw();		
 	}
 
-	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void show() {
 		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(stage);		
@@ -90,7 +83,6 @@ public class HelpScreen extends AbstractScreen{
 		
 		back.setClickListener(new ClickListener() {
 			
-			@Override
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
 				game.setScreen(new MainMenuScreen(game));

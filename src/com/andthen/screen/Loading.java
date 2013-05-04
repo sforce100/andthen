@@ -38,7 +38,6 @@ public class Loading extends AbstractScreen{
 			manager.load("animal/"+i+".png", Texture.class);
 
 	}
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		bar.dispose();
@@ -47,36 +46,30 @@ public class Loading extends AbstractScreen{
 		manager.dispose();
 	}
 
-	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void show() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void render(float arg0) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
