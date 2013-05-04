@@ -51,7 +51,6 @@ public class ExitDialog {
         //给ok这个按钮添加监听器
         yes.setClickListener(new ClickListener() {
                 
-                @Override
                 public void click(Actor arg0, float arg1, float arg2) {
                         // TODO Auto-generated method stub
                         //关闭程序
@@ -64,7 +63,6 @@ public class ExitDialog {
         no.y=60;
         no.setClickListener(new ClickListener() {
                 
-                @Override
                 public void click(Actor arg0, float arg1, float arg2) {
                         // TODO Auto-generated method stub
                         //移除对话框

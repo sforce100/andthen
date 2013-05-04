@@ -92,7 +92,6 @@ public class AnimalActor extends Actor implements Disposable{
 	}
 	
 	
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		for(int i=0;i<texArray.size();i++)

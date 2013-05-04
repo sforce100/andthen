@@ -36,7 +36,6 @@ public class ProgressBar extends Actor implements Disposable {
 		this.progress = progress;
 	}
 	
-	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		platform.dispose();

@@ -98,7 +98,7 @@ public class MapModel extends Actor{
 		batch.draw(barrier3,629,54);
 		batch.draw(barrier4,201,321);
 		
-		es.draw(batch, "" + enemysum, 10, Gdx.graphics.getHeight()-20);
+		es.draw(batch, "" + enemysum, 30, Gdx.graphics.getHeight()-20);
 
 	}
 
