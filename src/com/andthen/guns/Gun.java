@@ -1,5 +1,7 @@
 package com.andthen.guns;
 
+import com.badlogic.gdx.math.Rectangle;
+
 public class Gun {
 	
 	int damage;          //伤害
@@ -9,20 +11,50 @@ public class Gun {
 	int magazines;        //弹夹容量
 	int maxsize;          //最大携带量
 	int maxleft;          //玩家携带量
+	String name;
+	
+	
 	int is_lock;
 	int gun_cost;
 	int bullet_cost;
-	String name;
-	String texture;
+	
+	int x0,y0;
+	int width,height;
+	int magazineleft;     //弹夹剩余量
+	
+	
+	
+	
+	
+	
 	
 	public Gun(){
-		texture="pistol.png";
+
 		damage=16;
 		maxsize=400;
 		magazines=15;
 		maxleft=300;
 		reloadtime=500000000;
+		x0=280; y0=200;
+		width=100;
+		height=150;
+		magazineleft=15;
 	}
+	
+	public Gun(int test){
+
+		damage=16;
+		maxsize=400;
+		magazines=15;
+		maxleft=300;
+		reloadtime=500000000;
+		x0=0; y0=0;
+		width=100;
+		height=200;
+		magazineleft=15;
+	}
+	
+
 
 	public int getDamage() {
 		return damage;
@@ -48,13 +80,6 @@ public class Gun {
 		this.maxsize = maxsize;
 	}
 	
-	public String getTexture() {
-		return texture;
-	}
-
-	public void setTexture(String texture) {
-		this.texture = texture;
-	}
 
 	public int getMaxleft() {
 		return maxleft;
@@ -112,16 +137,73 @@ public class Gun {
 		this.bullet_cost = bullet_cost;
 	}
 
+
+
+	public int getX0() {
+		return x0;
+	}
+
+
+
+	public void setX0(int x0) {
+		this.x0 = x0;
+	}
+
+
+
+	public int getY0() {
+		return y0;
+	}
+
+
+
+	public void setY0(int y0) {
+		this.y0 = y0;
+	}
+
+
+
+	public int getWidth() {
+		return width;
+	}
+
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
+
+	public int getHeight() {
+		return height;
+	}
+
+
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+
+
 	public String getName() {
 		return name;
 	}
+
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public int getMagazineleft() {
+		return magazineleft;
+	}
 
-
-
+	public void setMagazineleft(int magazineleft) {
+		this.magazineleft = magazineleft;
+	}
 	
+
 }
