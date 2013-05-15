@@ -23,22 +23,27 @@ public class MapModel extends Actor{
 	TextureRegion barrier4;
 	
 	List<Rectangle> barrierrect =new ArrayList<Rectangle>();
-	//障碍物坐标  
-	//障碍物图片资源	
+
 	
-	//会出现敌人的类型
+
 	int enemycount;   //每批敌人的数量
-	int enemysum;//需杀死敌人数
+	int enemysum;    //需杀死敌人数
+	int enemylevel;  //可出现的敌人的最高等级
+	
+	
+	
+	
+	
+	
 	BitmapFont es;//需杀死敌人数字体
 	
 	
 	
 	
+	
+	
 	public MapModel(){
-//	//test数据	
-//	float[] a={100,100,1,1};
-//	float[] b={700,300,0.5f,2};
-//	float[] c={700,200,0.7f,2};
+
 	
 	float[] c={646,59,1,2};
 	float[] b={331,131,0.75f,2};
@@ -79,6 +84,7 @@ public class MapModel extends Actor{
 	
 	enemysum=30;
 	enemycount=3;
+	enemylevel=2;
 	
 	}
 
@@ -122,6 +128,14 @@ public class MapModel extends Actor{
 
 	public void setBarrierrect(List<Rectangle> barrierrect) {
 		this.barrierrect = barrierrect;
+	}
+
+	public int getEnemylevel() {
+		return enemylevel;
+	}
+
+	public void setEnemylevel(int enemylevel) {
+		this.enemylevel = enemylevel;
 	}
 	
 	

@@ -1,15 +1,13 @@
 package com.andthen.screen;
 
+import com.andthen.guns.Gun;
 import com.andthen.main.AndThenGame;
 import com.andthen.map.GameMap;
 import com.andthen.map.MapModel;
-import com.andthen.tool.TempTexture;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -26,6 +24,12 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	private MapModel mm;
 	private int x0,y0,x1,y1;
 	Button fire;
+	Button reload;
+	Button maingun;
+	Button secondgun;
+	
+	private Gun main;
+	private Gun second;
 	
 
 
@@ -78,21 +82,19 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	public void show() {
 		// TODO Auto-generated method stub
 		// 
-		
-		
-		
+				
 		mm=new MapModel();
+		
+		main = new Gun(1);	
+		second = new Gun();
+		
+		
 		stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
 				true);
 		
-		//需添加一个  根据前面screen选择的 地图   构造出一个对应的mapmodel的方法
-		
-		//需添加一个  根据前面screen选择的 武器情况   构造出一个对应的player的方法
-		
-		
-		
 
-		gamemap=new GameMap(stage,mm);      //传入舞台 跟 地图属性
+		
+		gamemap=new GameMap(stage,mm,main,second);      //传入舞台 跟 地图属性
 		
 		
 		
@@ -112,7 +114,56 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		
 		
 		
+		reload = new Button(new TextureRegion(game.getUiresource(), 248, 281, 62, 62), new TextureRegion(game.getUiresource(), 310, 281, 62, 62));
+		reload.x = Gdx.graphics.getWidth()-110;;
+		reload.y = 110;
+		reload.width = 100;
+		reload.height = 100;
+		reload.setClickListener(new ClickListener() {
+			
+			public void click(Actor arg0, float arg1, float arg2) {
+				// TODO Auto-generated method stub
+				gamemap.reload();
+				Gdx.app.log("hit", "okhit");
+			}
+		});
 		
+		
+		
+		maingun = new Button(new TextureRegion(game.getUiresource(), 0, 281, 62, 62));
+		maingun.x = Gdx.graphics.getWidth()-220;;
+		maingun.y = 10;
+		maingun.width = 100;
+		maingun.height = 100;
+		maingun.setClickListener(new ClickListener() {
+			
+			public void click(Actor arg0, float arg1, float arg2) {
+				
+				maingun.visible=false;
+				secondgun.visible=true;
+				gamemap.changesecond();
+				
+				Gdx.app.log("hit", "okhit");
+			}
+		});
+		
+		
+		secondgun = new Button(new TextureRegion(game.getUiresource(), 62, 281, 62, 62));
+		secondgun.x = Gdx.graphics.getWidth()-220;;
+		secondgun.y = 10;
+		secondgun.width = 100;
+		secondgun.height = 100;
+		secondgun.setClickListener(new ClickListener() {
+			
+			public void click(Actor arg0, float arg1, float arg2) {
+				
+				secondgun.visible=false;
+				maingun.visible=true;
+				gamemap.changemain();
+				Gdx.app.log("hit", "okhit");
+			}
+		});
+	
 	
 //		Gdx.input.setInputProcessor(stage);
 		  InputMultiplexer multiplexer = new InputMultiplexer();
@@ -121,6 +172,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			 
 			 Gdx.input.setInputProcessor(multiplexer);
 			 stage.addActor(fire);
+			 stage.addActor(reload);
+			 stage.addActor(maingun);
+			 stage.addActor(secondgun);
+			 secondgun.visible=false;
 
 	}
 
