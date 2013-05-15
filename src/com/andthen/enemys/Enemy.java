@@ -1,4 +1,4 @@
-package com.andthen.actor;
+package com.andthen.enemys;
 
 import com.andthen.action.LeftRight;
 import com.andthen.action.RightLeft;
@@ -68,7 +68,7 @@ public class Enemy extends Actor {
 
 		action(showtype);
 		health = 30;
-		damage=10;
+		damage=5;
 
 		// µÐÈË·¶Î§
 		enemyrect = new Rectangle();
@@ -140,26 +140,11 @@ public class Enemy extends Actor {
 			batch.draw(hole, this.x + 13 * z, this.y + 65 * z, holewidth,
 					holeheight);
 			st.setState(5);
-			state = State.DIE;
+			state = State.DIE;			
 		}
 		// ÅÐ¶ÏÊÇ·ñ¿ªÇ¹
 		if (st.getState() == 2) {
-//			if (TimeUtils.millis() - st.getFirebegin() > 2000) {
-//				batch.draw(fire, this.x + 3 * z, this.y + 27 * z, firewidth,
-//						fireheight);
-//				state=State.FIRE;
-//				st.setState(3);
-////				beginfire=TimeUtils.
-//			}
-			if (counter == 50){
-				batch.draw(fire, this.x + 3 * z, this.y + 27 * z, firewidth,
-						fireheight);
-				       state=State.FIRE;		
-			}
-			if(counter==51)
-				state=State.NEW;
-				
-			     
+
 			if (counter == 100){
 				batch.draw(fire, this.x + 3 * z, this.y + 27 * z, firewidth,
 						fireheight);
@@ -167,7 +152,16 @@ public class Enemy extends Actor {
 			}
 			if(counter==101)
 				state=State.NEW;
-			if (counter == 150){
+				
+			     
+			if (counter == 170){
+				batch.draw(fire, this.x + 3 * z, this.y + 27 * z, firewidth,
+						fireheight);
+				       state=State.FIRE;		
+			}
+			if(counter==171)
+				state=State.NEW;
+			if (counter == 250){
 				counter=0;
 			    st.setState(3);		
 			}

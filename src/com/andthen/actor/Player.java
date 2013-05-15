@@ -21,17 +21,19 @@ public class Player extends Actor {
 	int health; // 生命值
     int defense;//护甲
     
-	Texture guntexture;//枪械图片
+	Texture gunresource;//枪械图片
+	
+	
+	TextureRegion guntexture;
 	float height; // 图片高度
 	float width; // 图片宽度
 	
-	int bulletleft; // 当前弹夹子弹数
 	Rectangle playerrect; // player范围
 
 	BitmapFont maxleft, maxsize, bleft; // 剩余子弹值 最大携带量 弹夹剩余子弹数
 	BitmapFont hp,def;   //生命值、护甲值
 
-	//换弹时间
+	
 	long reloadbegin; //换弹开始时间
 	int delay = 0;  //换弹标识
 	
@@ -39,26 +41,26 @@ public class Player extends Actor {
 	Image enemyImg, armorImg, hpImg;
 	Label emenyLab, armorLab, hpLab;
 	BitmapFont font;
-	public Player(float x, float y) {
+	public Player(float x, float y,Gun thegun) {
 		this.x = x;
 		this.y = y;
 		
 		health=100;
 		defense=35;
 		
-		gun = new Gun();
-		guntexture = new Texture(Gdx.files.internal(gun.getTexture()));
-		height = guntexture.getHeight();
-		width = guntexture.getWidth();
-
-		// 当前弹夹子弹数
-		bulletleft = gun.getMagazines();
+		gun =thegun;
+		gunresource = new Texture(Gdx.files.internal("guns.png"));
+		guntexture=new TextureRegion(gunresource,gun.getX0(),gun.getY0(),gun.getWidth(),gun.getHeight());    
+		
+		width = gun.getWidth();
+		height = gun.getHeight();
+		
 		// player范围
 		playerrect = new Rectangle();
-		playerrect.x = this.x + width / 2 - 2;
-		playerrect.y = this.y + height - 2;
-		playerrect.width = 4;
-		playerrect.height = 4;
+		playerrect.x = this.x + width / 2 - 1;
+		playerrect.y = this.y + height - 1;
+		playerrect.width = 2;
+		playerrect.height = 2;
 
 		// 字体
 		bleft = new BitmapFont(Gdx.files.internal("font.fnt"), false);
@@ -85,8 +87,8 @@ public class Player extends Actor {
 	public void setposition(float x, float y) {
 		this.x = x;
 		this.y = y;
-		playerrect.x = this.x + width / 2 - 2;
-		playerrect.y = this.y + height - 2;
+		playerrect.x = this.x + width / 2 - 1;
+		playerrect.y = this.y + height - 1;
 	}
 
 	// 获取射击范围
@@ -98,12 +100,12 @@ public class Player extends Actor {
 	public void reload() {
 
 		if (gun.getMaxleft() > 0) {
-			if (gun.getMaxleft() + bulletleft >= gun.getMagazines()) {
-				gun.setMaxleft(gun.getMaxleft() + bulletleft
+			if (gun.getMaxleft() + gun.getMagazineleft() >= gun.getMagazines()) {
+				gun.setMaxleft(gun.getMaxleft() + gun.getMagazineleft()
 						- gun.getMagazines());
-				bulletleft = gun.getMagazines();
+				gun.setMagazineleft( gun.getMagazines());
 			} else {
-				bulletleft = bulletleft + gun.getMaxleft();
+				gun.setMagazineleft(gun.getMagazineleft() + gun.getMaxleft());
 				gun.setMaxleft(0);
 			}
 		}
@@ -111,7 +113,7 @@ public class Player extends Actor {
 
 	// 射击
 	public void shot() {
-		bulletleft -= 1;
+		gun.setMagazineleft(gun.getMagazineleft()-1);
 	}
 	
 	//被击中
@@ -132,7 +134,7 @@ public class Player extends Actor {
 	public void draw(SpriteBatch batch, float arg1) {
 		
 		batch.draw(guntexture, this.x, this.y);
-		bleft.draw(batch, "" + bulletleft, 20, 40);
+		bleft.draw(batch, "" + gun.getMagazineleft(), 20, 40);
 		maxsize.draw(batch, "" + gun.getMaxsize(), 20, 60);
 		maxleft.draw(batch, "" + gun.getMaxleft(), 20, 80);
 		
@@ -191,17 +193,25 @@ public class Player extends Actor {
 		return gun;
 	}
 
-	public void setGun(Gun gun) {
-		this.gun = gun;
+	public void setGun(Gun thegun) {
+
+		this.gun = thegun;
+		
+		guntexture=new TextureRegion(gunresource,gun.getX0(),gun.getY0(),gun.getWidth(),gun.getHeight());    
+		
+		width = gun.getWidth();
+		height = gun.getHeight();
+		
+		
 	}
 
-	public int getBulletleft() {
-		return bulletleft;
-	}
-
-	public void setBulletleft(int bulletleft) {
-		this.bulletleft = bulletleft;
-	}
+//	public int getBulletleft() {
+//		return bulletleft;
+//	}
+//
+//	public void setBulletleft(int bulletleft) {
+//		this.bulletleft = bulletleft;
+//	}
 
 	public int getDelay() {
 		return delay;
@@ -233,6 +243,22 @@ public class Player extends Actor {
 
 	public void setDefense(int defense) {
 		this.defense = defense;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
 	}
 
 
