@@ -27,6 +27,9 @@ public class GameMap { // 构建地图
 	private Gun main,second;
 	private int wait=0;
 	private long time;
+	
+	private int result=3;
+	private int hp,kill;
 
 	public GameMap(Stage s, MapModel m,Gun gun1,Gun gun2) {
 		main=gun1;
@@ -34,6 +37,7 @@ public class GameMap { // 构建地图
 		
 		stage = s;
 		mm = m;
+		kill=mm.getEnemysum();
 		player = new Player(350, 200,main);
 		
 		
@@ -95,6 +99,14 @@ public class GameMap { // 构建地图
 			}
 			wait=0;
 			}
+		}
+		
+		if(player.getHealth()<=0){
+			result=0;
+		}
+		if(mm.getEnemysum()<=0){
+			result=1;
+			hp=player.getHealth();
 		}
 
 	}
@@ -229,6 +241,30 @@ public class GameMap { // 构建地图
 	public void changemain(){
 		player.setGun(main);
 		
+	}
+
+	public int getResult() {
+		return result;
+	}
+
+	public void setResult(int result) {
+		this.result = result;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getKill() {
+		return kill;
+	}
+
+	public void setKill(int kill) {
+		this.kill = kill;
 	}
 
 }

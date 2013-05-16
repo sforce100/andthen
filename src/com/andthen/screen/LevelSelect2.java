@@ -48,6 +48,12 @@ public class LevelSelect2 extends AbstractScreen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
 		stage.act(Gdx.graphics.getDeltaTime());
+		
+		stage.getSpriteBatch().begin();
+		stage.getSpriteBatch().draw(game.getBackground(), 0, 0); // ªÊ÷∆±≥æ∞
+		stage.getSpriteBatch().end();
+		
+		
 		stage.draw();	
 	}
 

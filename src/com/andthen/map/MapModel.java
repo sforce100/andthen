@@ -24,7 +24,6 @@ public class MapModel extends Actor{
 	
 	List<Rectangle> barrierrect =new ArrayList<Rectangle>();
 
-	
 
 	int enemycount;   //每批敌人的数量
 	int enemysum;    //需杀死敌人数
@@ -82,7 +81,7 @@ public class MapModel extends Actor{
 	
 	es=new BitmapFont(Gdx.files.internal("font.fnt"), false);
 	
-	enemysum=30;
+	enemysum=3;
 	enemycount=3;
 	enemylevel=2;
 	
@@ -104,7 +103,7 @@ public class MapModel extends Actor{
 		batch.draw(barrier3,629,54);
 		batch.draw(barrier4,201,321);
 		
-		es.draw(batch, "" + enemysum, 30, Gdx.graphics.getHeight()-20);
+		es.draw(batch, "" + enemysum, 130, Gdx.graphics.getHeight()-20);
 
 	}
 

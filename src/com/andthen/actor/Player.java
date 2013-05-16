@@ -2,6 +2,7 @@ package com.andthen.actor;
 
 import com.andthen.guns.Gun;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -36,6 +37,11 @@ public class Player extends Actor {
 	
 	long reloadbegin; //换弹开始时间
 	int delay = 0;  //换弹标识
+	
+	
+	Sound  reloadsound = Gdx.audio.newSound(Gdx.files.internal("reload1.wav"));
+	Sound  gunsound = Gdx.audio.newSound(Gdx.files.internal("gunsound.wav"));
+	
 	
 	private Texture uiresource;
 	Image enemyImg, armorImg, hpImg;
@@ -113,6 +119,7 @@ public class Player extends Actor {
 
 	// 射击
 	public void shot() {
+		gunsound.play();
 		gun.setMagazineleft(gun.getMagazineleft()-1);
 	}
 	
@@ -147,13 +154,17 @@ public class Player extends Actor {
 //		hpLab.width = 10;
 //		hpLab.height = 10;
 //		hpLab.draw(batch, 100);
-		hp.draw(batch, "" + health, Gdx.graphics.getWidth()-70, Gdx.graphics.getHeight()-20);
+		hp.draw(batch, "" + health, Gdx.graphics.getWidth()-70, Gdx.graphics.getHeight()-25);
 		
-		def.draw(batch, "" + defense, Gdx.graphics.getWidth()-200,Gdx.graphics.getHeight()-20);
+		def.draw(batch, "" + defense, Gdx.graphics.getWidth()-220,Gdx.graphics.getHeight()-25);
 
 		//装弹延时
 		if (delay == 1) {
+
+			
+
 			if (TimeUtils.nanoTime() - reloadbegin > gun.getReloadtime()){
+				reloadsound.play();
 				reload();
 				delay = 0;
 			}
@@ -172,19 +183,19 @@ public class Player extends Actor {
 	     hpImg = new Image(new TextureRegion(uiresource, 203,219, 79,36));
 //	     hpLab = new Label("100", new LabelStyle(font, Color.WHITE));
 	     hpImg.x = Gdx.graphics.getWidth()-100;
-		 hpImg.y = Gdx.graphics.getHeight()-50;
+		 hpImg.y = Gdx.graphics.getHeight()-60;
 		 hpImg.width = 80;
 		 hpImg.height = 40;
 		 
 		 armorImg = new Image(new TextureRegion(uiresource, 282,219, 79,36));
 		 armorImg.x = Gdx.graphics.getWidth()-250;
-		 armorImg.y = Gdx.graphics.getHeight()-50;
+		 armorImg.y = Gdx.graphics.getHeight()-60;
 		 armorImg.width = 80;
 		 armorImg.height = 40;
 //		 
 		 enemyImg = new Image(new TextureRegion(uiresource, 124,219, 79,36));
-		 enemyImg.x = 5;
-		 enemyImg.y = Gdx.graphics.getHeight()-50;
+		 enemyImg.x = 100;
+		 enemyImg.y = Gdx.graphics.getHeight()-60;
 		 enemyImg.width = 80;
 		 enemyImg.height = 40;
 	}
@@ -204,14 +215,6 @@ public class Player extends Actor {
 		
 		
 	}
-
-//	public int getBulletleft() {
-//		return bulletleft;
-//	}
-//
-//	public void setBulletleft(int bulletleft) {
-//		this.bulletleft = bulletleft;
-//	}
 
 	public int getDelay() {
 		return delay;

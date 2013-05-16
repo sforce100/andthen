@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.andthen.model.GameOption;
 import com.andthen.model.GameSource;
+import com.andthen.screen.FailScreen;
 import com.andthen.screen.GameScreen;
 import com.andthen.screen.HelpScreen;
 import com.andthen.screen.LevelSelect1;
@@ -12,15 +13,14 @@ import com.andthen.screen.LevelSelect2;
 import com.andthen.screen.Loading;
 import com.andthen.screen.MainMenuScreen;
 import com.andthen.screen.OptionScreen;
+import com.andthen.screen.PauseScreen;
 import com.andthen.screen.ShopScreen;
+import com.andthen.screen.SuccessScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class AndThenGame extends Game {
 	
@@ -34,11 +34,21 @@ public class AndThenGame extends Game {
 	private LevelSelect1 levelSelect1;
 	private LevelSelect2 levelSelect2;
 	private ShopScreen shopScreen;
+	private SuccessScreen successscreen;
+	private FailScreen failscreen;
+	private PauseScreen pausescreen;
+	
 	
 	private SharedPreferences sp;
 	
 	private Texture uiresource ;
 	private TextureRegion back1, next1, back2, next2;
+	
+	private Texture bgresource ;
+	private TextureRegion background;
+	
+	
+	private Music music;
 	
 	//记录选择地图和枪支等
 	private GameSource gameSource; 
@@ -71,6 +81,10 @@ public class AndThenGame extends Game {
 		levelSelect1 = new LevelSelect1(this);
 		levelSelect2 = new LevelSelect2(this);
 		shopScreen = new ShopScreen(this);
+		successscreen =new SuccessScreen(this);
+		failscreen=new FailScreen(this);
+		pausescreen =new PauseScreen(this);
+		
 	}
 	
 	private void initUiSource(){
@@ -80,7 +94,11 @@ public class AndThenGame extends Game {
 		back1 = new TextureRegion(uiresource, 200, 0, 86, 89);
 		back2 = new TextureRegion(uiresource, 286, 0, 86, 89);
 		
+		bgresource =  new Texture(Gdx.files.internal("background.png"));
+		background=new TextureRegion(bgresource, 0, 0, 800, 480);
+		
 		gameSource = new GameSource();
+		music = Gdx.audio.newMusic(Gdx.files.internal("bgmusic.wav"));
 	}
 	
 	public Activity getActivity() {
@@ -173,6 +191,36 @@ public class AndThenGame extends Game {
 	}
 	public void setGameSource(GameSource gameSource) {
 		this.gameSource = gameSource;
+	}
+	public Music getMusic() {
+		return music;
+	}
+	public void setMusic(Music music) {
+		this.music = music;
+	}
+	public TextureRegion getBackground() {
+		return background;
+	}
+	public void setBackground(TextureRegion background) {
+		this.background = background;
+	}
+	public SuccessScreen getSuccessscreen() {
+		return successscreen;
+	}
+	public void setSuccessscreen(SuccessScreen successscreen) {
+		this.successscreen = successscreen;
+	}
+	public FailScreen getFailscreen() {
+		return failscreen;
+	}
+	public void setFailscreen(FailScreen failscreen) {
+		this.failscreen = failscreen;
+	}
+	public PauseScreen getPausescreen() {
+		return pausescreen;
+	}
+	public void setPausescreen(PauseScreen pausescreen) {
+		this.pausescreen = pausescreen;
 	}
 
 }

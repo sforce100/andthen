@@ -1,9 +1,12 @@
 package com.andthen.screen;
 
+import java.util.ArrayList;
+
 import com.andthen.guns.Gun;
 import com.andthen.main.AndThenGame;
 import com.andthen.map.GameMap;
 import com.andthen.map.MapModel;
+import com.andthen.tool.sql.GunSqlOperator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
@@ -27,9 +30,14 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	Button reload;
 	Button maingun;
 	Button secondgun;
+	Button pause;
 	
 	private Gun main;
 	private Gun second;
+	
+	
+	private GunSqlOperator gunsql;
+	private ArrayList<Gun> guns;
 	
 
 
@@ -66,6 +74,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		
 		gamemap.render();
 		stage.draw();
+		
+		switch (gamemap.getResult()){
+		case 1:
+			game.getSuccessscreen().setresult(gamemap.getKill(), gamemap.getHp());
+			game.setScreen(game.getSuccessscreen());
+			break;
+		case 0:
+			game.setScreen(game.getFailscreen());
+			break;
+
+		}
 
 	}
 
@@ -85,6 +104,15 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 				
 		mm=new MapModel();
 		
+//		gunsql=new GunSqlOperator(game.getActivity());
+//		
+//		guns=new ArrayList<Gun>();
+//		
+//		guns=gunsql.queryGun();
+//		
+//		
+//		main =guns.get(1);
+//		second =guns.get(4);
 		main = new Gun(1);	
 		second = new Gun();
 		
@@ -163,6 +191,20 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 				Gdx.app.log("hit", "okhit");
 			}
 		});
+		
+		
+		pause = new Button(new TextureRegion(game.getUiresource(), 0,219, 62, 62),new TextureRegion(game.getUiresource(), 62,219, 62, 62));
+		pause.x = 10;
+		pause.y = Gdx.graphics.getHeight()-70;
+		pause.width = 62;
+		pause.height = 62;
+		pause.setClickListener(new ClickListener() {
+			
+			public void click(Actor arg0, float arg1, float arg2) {
+				game.setScreen(game.getPausescreen());
+
+			}
+		});
 	
 	
 //		Gdx.input.setInputProcessor(stage);
@@ -175,6 +217,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			 stage.addActor(reload);
 			 stage.addActor(maingun);
 			 stage.addActor(secondgun);
+			 stage.addActor(pause);
 			 secondgun.visible=false;
 
 	}

@@ -23,11 +23,13 @@ import com.andthen.main.AndThenGame;
 import com.andthen.ui.ExitDialog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -53,6 +55,12 @@ public class MainMenuScreen extends AbstractScreen {
 	BitmapFont font;
 	ExitDialog exitDialog;
 	boolean isPressKeyBack = false;
+	
+	private Texture bgresource ;
+	private TextureRegion background;
+	
+	
+	
 	public MainMenuScreen (AndThenGame game) {
 		super(game);
 		init();
@@ -79,6 +87,14 @@ public class MainMenuScreen extends AbstractScreen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
 		stage.act(Gdx.graphics.getDeltaTime());
+		
+		
+		stage.getSpriteBatch().begin();
+		stage.getSpriteBatch().draw(background, 0, 0); // »æÖÆ±³¾°
+		stage.getSpriteBatch().end();
+		
+		
+		
 		stage.draw();		
 		
 		if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
@@ -105,82 +121,61 @@ public class MainMenuScreen extends AbstractScreen {
 	public void show() {
 		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(stage);
+		
+		
+		game.getMusic().setLooping(true);
+		game.getMusic().play();
+		game.getMusic().setVolume(15);
+			
 	}
 	
 	private void init(){
 		FileHandle  png = Gdx.files.internal("button1_480.png");
+		
+		bgresource =  new Texture(Gdx.files.internal("main.png"));
+		background=new TextureRegion(bgresource, 0, 0, 800, 480);
+		
 		tex = new Texture(png);
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 		NinePatch n1 = new NinePatch(tex, 7, 7, 9, 9); 
 		
 		
 		//start button
-		start = new Button(new Button.ButtonStyle(n1, n1, n1, 0,0,100,100));
-		start.x=10;
-		start.y=10;
-		start.width=100f;
-		start.height=32f;
+		start = new Button(new TextureRegion(bgresource, 0,480, 180, 50), new TextureRegion(bgresource, 0,530, 180, 50));
+		start.x=63;
+		start.y=195;
+		start.width=180f;
+		start.height=50f;
 		
 		
 		
-		lstart = new Label("start", new LabelStyle(font, Color.WHITE));
-		lstart.x=110;
-		lstart.y=10;
-		lstart.width=100f;
-		lstart.height=32f;
-		
-		
-		//option button
-		option = new Button(new Button.ButtonStyle(n1, n1, n1, 0,0,100,100));
+
+		option = new Button(new TextureRegion(bgresource, 180,480, 180, 50),new TextureRegion(bgresource, 180,530, 180, 50));
 
 		
-		option.x = 10;
-		option.y = 70;
-		option.width=100f;
-		option.height=32f;	
+		option.x = 63;
+		option.y = 145;
+		option.width=180f;
+		option.height=50f;	
 		
-		loption = new Label("option", new LabelStyle(font, Color.WHITE));
-		loption.x=110;
-		loption.y=70;
-		loption.width=100f;
-		loption.height=32f;
-		
-		help = new Button( new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f)); 
-		help.x=10;
-		help.y=108;
-		help.width=100f;
-		help.height=32f;
 
 		
-		lhelp = new Label("help", new LabelStyle(font, Color.WHITE));
-		lhelp.x=110;
-		lhelp.y=108;
-		lhelp.width=100f;
-		lhelp.height=32f;
+		help = new Button( new TextureRegion(bgresource, 360,480, 180, 50),new TextureRegion(bgresource, 360,530, 180, 50)); 
+		help.x=63;
+		help.y=95;
+		help.width=180f;
+		help.height=50f;
+
 		
-		
-		exit = new Button(new ButtonStyle(n1, n1, n1, 0f, 0f, 0f, 0f));
-		exit.x=10;
-		exit.y=146;
-		exit.width=100f;
-		exit.height=32f;
-		
-		
-		lexit = new Label("exit", new LabelStyle(font, Color.WHITE));
-		lexit.x=110;
-		lexit.y=146;
-		lexit.width=100f;
-		lexit.height=32f;
 	
 		
+		exit = new Button(new TextureRegion(bgresource, 540,480, 180, 50),new TextureRegion(bgresource, 540,530, 180, 50));
+		exit.x=58;
+		exit.y=45;
+		exit.width=180f;
+		exit.height=50f;
 		
-		lmain = new Label("MainScreen", new LabelStyle(font, Color.WHITE));
-//		lmain.setText("Ö÷²Ëµ¥");
-		lmain.width = 200f;
-		lmain.height = 50f;
-		lmain.x = 200;
-		lmain.y = 200;
-		
+
 		operator();
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
@@ -188,11 +183,6 @@ public class MainMenuScreen extends AbstractScreen {
 		stage.addActor(option);
 		stage.addActor(help);
 		stage.addActor(exit);
-		stage.addActor(lmain);
-		stage.addActor(lhelp);
-		stage.addActor(lexit);
-		stage.addActor(loption);
-		stage.addActor(lstart);
 		
 	}
 	

@@ -76,6 +76,12 @@ public class Loading extends AbstractScreen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(1f, 1f, 1f, 0f);
 		stage.act(Gdx.graphics.getDeltaTime());
+		
+		
+		stage.getSpriteBatch().begin();
+		stage.getSpriteBatch().draw(game.getBackground(), 0, 0); // 绘制背景
+		stage.getSpriteBatch().end();
+		
 		stage.draw();
 		//update才真正加载,加载完就返回true
 		if(!manager.update()){

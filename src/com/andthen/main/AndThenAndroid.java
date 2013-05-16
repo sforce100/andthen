@@ -1,5 +1,6 @@
 package com.andthen.main;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.andthen.tool.AssetTool;
@@ -11,6 +12,7 @@ public class AndThenAndroid extends AndroidApplication {
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//Ç¿ÖÆÎªºáÆÁ
 		initialize(new AndThenGame(this), false);
 	}
 
