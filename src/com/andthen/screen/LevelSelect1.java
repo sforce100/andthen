@@ -1,9 +1,11 @@
 package com.andthen.screen;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.andthen.main.AndThenGame;
-import com.andthen.tool.sql.MapSqlOperator;
+import com.andthen.map.LevelMap1;
+import com.andthen.tool.sql.MapSqlOperator1;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -27,6 +29,9 @@ public class LevelSelect1 extends AbstractScreen{
 	BitmapFont font;
 	
 	ArrayList list;
+	
+	MapSqlOperator1 mo1;
+	ArrayList<LevelMap1> ml;
 	public LevelSelect1(AndThenGame game){
 		super(game);
 //		init();
@@ -35,6 +40,7 @@ public class LevelSelect1 extends AbstractScreen{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		stage.dispose();
+		mo1.closeUserHelper();
 	}
 
 	public void hide() {
@@ -76,6 +82,10 @@ public class LevelSelect1 extends AbstractScreen{
 	}
 	
 	private void init(){
+		
+		mo1 = new MapSqlOperator1(game.getActivity().getApplicationContext());
+		ml = mo1.queryMap();
+//		
 	
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 
@@ -119,8 +129,11 @@ public class LevelSelect1 extends AbstractScreen{
 		int k = 10;
 		int kk = (Gdx.graphics.getWidth()-k*6)/5;
 		int yy = Gdx.graphics.getHeight()-100;
-		for(int i=1; i<11; i++){
-			Button b = new Button(new TextureRegion(game.getUiresource(), 374, 0, 138,141), new TextureRegion(game.getUiresource(), 512, 0, 138,141));
+		Iterator<LevelMap1> it = ml.iterator();
+		int i = 1;
+		while(it.hasNext()){
+			LevelMap1 lm = it.next();
+			Button b = new Button(new TextureRegion(game.getUiresource(), (lm.getIs_lock() == 1 ? lm.getXl() : lm.getX()), (lm.getIs_lock() == 1 ? lm.getYl() : lm.getY()), lm.getW(),lm.getH()), new TextureRegion(game.getUiresource(), lm.getXl(), lm.getYl(), lm.getW(),lm.getH()));
 			if(i>5){
 				b.x = kk*(i-6)+k;
 			}else{
@@ -131,16 +144,19 @@ public class LevelSelect1 extends AbstractScreen{
 			b.width = kk;
 			b.height = kk;
 			final String txt = "select level   "+i;
-			final int tempI = i;
-			b.setClickListener(new ClickListener() {
-				
-				public void click(Actor arg0, float arg1, float arg2) {
-					// TODO Auto-generated method stub
-					lmain.setText(txt);
-					game.getGameSource().setLevel(tempI);
-				}
-			});
+			final int level = lm.getLevel();
+			if(lm.getIs_lock() == 0){
+				b.setClickListener(new ClickListener() {
+					
+					public void click(Actor arg0, float arg1, float arg2) {
+						// TODO Auto-generated method stub
+						lmain.setText(txt);
+						game.getGameSource().setLevel(level);
+					}
+				});
+			}
 			stage.addActor(b);
+			i++;
 		}
 		
 	}

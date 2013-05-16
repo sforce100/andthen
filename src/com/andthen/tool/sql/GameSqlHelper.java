@@ -21,7 +21,7 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 	}
 	public GameSqlHelper(Context context, String name,
 			CursorFactory factory) {
-		this(context, name, factory,1);
+		this(context, name, factory,3);
 		// TODO Auto-generated constructor stub
 	}
 	public GameSqlHelper(Context context) {
@@ -32,6 +32,7 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+//		dropTables(db);
 		createTables(db);
 		initData(db);
 	}
@@ -53,20 +54,10 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 //		USERNAME+" varchar(20),"+
 //		PASSWORD+" varchar(20)"+
 //		")");
-		db.execSQL("CREATE TABLE "+
-		"gun ("+
-		"id integer primary key,"+
-		"damage integer,"+ 
-		"firerate integer,"+
-		"accuracy integer,"+
-		"total integer, sunandsteel integer, residue_bullet integer,"+
-		"gun_cost integer, bullet_cost integer"+
-		"name varchar2(10),"+
-		"is_lock integer,"+
-		"fill_time integer, x integer, y integer, w integer, h integer)");
+		db.execSQL("CREATE TABLE gun (id integer primary key, damage integer, firerate integer, accuracy integer, total integer, sunandsteel integer, residue_bullet integer, gun_cost integer, bullet_cost integer,name varchar2(10),is_lock integer,fill_time integer, x integer, y integer, w integer, h integer, sx integer, sy integer, sw integer, sh integer, state integer)");
 		
 		db.execSQL("CREATE TABLE armor (name varchar2(10), cost integer, defence integer, is_lock integer, residue integer)");
-		db.execSQL("CREATE TABLE map1 (req_star integer, level integer, is_lock integer)");
+		db.execSQL("CREATE TABLE map1 (req_star integer, level integer, is_lock integer, x integer, y integer, xl integer, yl integer,w integer, h integer)");
 		db.execSQL("CREATE TABLE map2 (level integer, num integer, is_lock integer, get_star integer, req_star integer,enemycount integer, enemysum integer, enemylevel integer)");
 
 	    Log.e("Database","onCreate");
@@ -74,27 +65,27 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 	
 	//初始化数据
 	private void initData(SQLiteDatabase db){
-		String sql7 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(70,70,70,70,70,70,70,70,'左轮',0,280,200,100,150) ";
+		String sql7 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name," +
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state) values (70,70,70,70,70,70,70,70,'左轮',0,70,0,0,512,256, 512, 0, 256, 128,1) ";
 		String sql1 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(80,80,80,80,80,80,80,80,'银鹰',1,180,200,100,150) ";
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state)values(80,80,80,80,80,80,80,80,'银鹰',1,80,0,256,512,256, 512, 256, 256, 128,1) ";
 		String sql2 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(90,90,90,90,90,90,90,90,'awm',1,0,200,180,200) ";
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state)values(90,90,90,90,90,90,90,90,'awm',1,90,0,512,512,256, 512,512,256, 128,2) ";
 		String sql3 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(100,100,100,100,100,100,100,100,'散弹',1,300,0,100,200) ";
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state)values(100,100,100,100,100,100,100,100,'散弹',1,100,0,1024,512,256, 512, 1024, 256, 128,2) ";
 		String sql4 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(110,110,110,110,110,110,110,110,'m4a1',1,200,0,100,200) ";
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state)values(110,110,110,110,110,110,110,110,'m4a1',1,110,0,768,512,256,512,786,256,128,2) ";
 		String sql5 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(120,120,120,120,120,120,120,120,'95式',1,100,0,100,200) ";
-		String sql6 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
-				"is_lock,fill_time,x,y,w,h)values(130,130,130,130,130,130,130,130,'b31',1,0,0,100,200) ";
+				"is_lock,fill_time,x,y,w,h,sx,sy,sw,sh,state)values(120,120,120,120,120,120,120,120,'95式',1,120,0,1280,512,256,512,1280,256,128,2) ";
+//		String sql6 = "insert into gun(damage,firerate,accuracy,total,sunandsteel,residue_bullet,gun_cost,bullet_cost,name,"+
+//				"is_lock,fill_time,x,y,w,h)values(130,130,130,130,130,130,130,130,'b31',1,130,0,0,100,200) ";
 		
 		db.execSQL(sql1);
 		db.execSQL(sql2);
 		db.execSQL(sql3);
 		db.execSQL(sql4);
 		db.execSQL(sql5);
-		db.execSQL(sql6);
+//		db.execSQL(sql6);
 		db.execSQL(sql7);
 		
 		
@@ -107,17 +98,11 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 		db.execSQL(a3);
 		
 		
-		String m1 = "insert into map1(req_star, level, is_lock) values(20, 1, 0)";
-		String m2 = "insert into map1(req_star, level, is_lock) values(40, 2, 0)";
-		String m3 = "insert into map1(req_star, level, is_lock) values(60, 3, 0)";
-		String m4 = "insert into map1(req_star, level, is_lock) values(80, 4, 0)";
-		String m5 = "insert into map1(req_star, level, is_lock) values(100, 5, 0)";
-	
+		String m1 = "insert into map1(req_star, level, is_lock, x, y , xl, yl, w ,h ) values(20, 1, 0, 374, 0, 512, 0, 138, 141)";
+		String m2 = "insert into map1(req_star, level, is_lock, x, y , xl, yl, w ,h) values(40, 2, 1, 652, 0, 791, 0, 138, 141)";
+
 		db.execSQL(m1);
 		db.execSQL(m2);
-		db.execSQL(m3);
-		db.execSQL(m4);
-		db.execSQL(m5);
 		
 		String mm1 = "insert into map2(level, num, is_lock, get_star, req_star,enemycount, enemysum, enemylevel) values(1,1,0,0,0,5,15,1)";
 		String mm2 = "insert into map2(level, num, is_lock, get_star, req_star,enemycount, enemysum, enemylevel) values(1,2,1,0,1,5,15,1)";
@@ -146,6 +131,7 @@ public class GameSqlHelper extends SQLiteOpenHelper {
 // example:
 		db.execSQL("DROP TABLE IF EXISTS gun"); 
 		db.execSQL("DROP TABLE IF EXISTS armor"); 
-		db.execSQL("DROP TABLE IF EXISTS map");
+		db.execSQL("DROP TABLE IF EXISTS map1");
+		db.execSQL("DROP TABLE IF EXISTS map2");
 	}
 }

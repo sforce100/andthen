@@ -31,7 +31,16 @@ public class GunSqlOperator extends SqlOperatorBase{
 			gun.setMaxleft(cursor.getInt(cursor.getColumnIndex("residue_bullet")));
 			gun.setName(cursor.getString(cursor.getColumnIndex("name")));
 			gun.setGun_cost(cursor.getInt(cursor.getColumnIndex("gun_cost")));
-			gun.setBullet_cost(cursor.getInt(cursor.getColumnIndex("bullet_cost")));
+			gun.setX(cursor.getInt(cursor.getColumnIndex("x")));
+			gun.setY(cursor.getInt(cursor.getColumnIndex("y")));
+			gun.setSx(cursor.getInt(cursor.getColumnIndex("sx")));
+			gun.setSy(cursor.getInt(cursor.getColumnIndex("sy")));
+			gun.setW(cursor.getInt(cursor.getColumnIndex("w")));
+			gun.setH(cursor.getInt(cursor.getColumnIndex("h")));
+			gun.setSw(cursor.getInt(cursor.getColumnIndex("sw")));
+			gun.setSh(cursor.getInt(cursor.getColumnIndex("sh")));
+			gun.setState(cursor.getInt(cursor.getColumnIndex("state")));
+			
 			guns.add(gun);
 			cursor.moveToNext();
 		}

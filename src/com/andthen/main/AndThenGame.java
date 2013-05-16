@@ -26,7 +26,7 @@ public class AndThenGame extends Game {
 	
 	private Activity activity;
 	private GameOption gameOption;
-	
+
 	private MainMenuScreen menuScreen;
 	private GameScreen gameScreen;
 	private HelpScreen helpScreen;

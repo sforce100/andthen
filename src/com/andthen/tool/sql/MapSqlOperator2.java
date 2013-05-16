@@ -2,26 +2,26 @@ package com.andthen.tool.sql;
 
 import java.util.ArrayList;
 
-import com.andthen.map.LevelMap;
+import com.andthen.map.LevelMap2;
 
 import android.content.ContentValues;
 import android.content.Context;
 
-public class MapSqlOperator extends SqlOperatorBase{
+public class MapSqlOperator2 extends SqlOperatorBase{
 	
-	private static final String TABLE = "map";
+	private static final String TABLE = "map2";
 
-	public MapSqlOperator(Context context) {
+	public MapSqlOperator2(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ArrayList<LevelMap> queryMap(){
-		ArrayList<LevelMap> maps = new ArrayList<LevelMap>();
+	public ArrayList<LevelMap2> queryMap(){
+		ArrayList<LevelMap2> maps = new ArrayList<LevelMap2>();
 		cursor = db.query(TABLE, null, null, null, null, null, null);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
-			LevelMap map = new LevelMap();
+			LevelMap2 map = new LevelMap2();
 			map.setLevel(cursor.getInt(cursor.getColumnIndex("level")));
 			map.setNum(cursor.getInt(cursor.getColumnIndex("num")));
 			map.setIs_lock(cursor.getInt(cursor.getColumnIndex("is_lock")));
