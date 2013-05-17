@@ -189,7 +189,8 @@ public class PauseScreen extends AbstractScreen {
 
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
-				game.setScreen(game.getShopScreen());
+				game.getOperatescreen().setParent(1);
+				game.setScreen(game.getOperatescreen());
 			}});
 		
 		goon.setClickListener(new ClickListener(){

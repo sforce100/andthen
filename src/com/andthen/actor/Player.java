@@ -39,8 +39,7 @@ public class Player extends Actor {
 	int delay = 0;  //»»µ¯±êÊ¶
 	
 	
-	Sound  reloadsound = Gdx.audio.newSound(Gdx.files.internal("reload1.wav"));
-	Sound  gunsound = Gdx.audio.newSound(Gdx.files.internal("gunsound.wav"));
+
 	
 	
 	private Texture uiresource;
@@ -119,7 +118,6 @@ public class Player extends Actor {
 
 	// Éä»÷
 	public void shot() {
-		gunsound.play();
 		gun.setMagazineleft(gun.getMagazineleft()-1);
 	}
 	
@@ -164,7 +162,6 @@ public class Player extends Actor {
 			
 
 			if (TimeUtils.nanoTime() - reloadbegin > gun.getReloadtime()){
-				reloadsound.play();
 				reload();
 				delay = 0;
 			}

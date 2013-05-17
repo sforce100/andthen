@@ -62,6 +62,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	public void pause() {
 		// TODO Auto-generated method stub
 
+
 	}
 
 	public void render(float arg0) {
@@ -71,6 +72,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 //		stage.act(Gdx.graphics.getDeltaTime());
 		stage.act(0.05f);
 //		Gdx.app.log("render",""+Gdx.graphics.getDeltaTime());
+		
+		gamemap.setSoundclose(game.getOperatescreen().isSoundclose());
 		
 		gamemap.render();
 		stage.draw();
@@ -201,6 +204,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		pause.setClickListener(new ClickListener() {
 			
 			public void click(Actor arg0, float arg1, float arg2) {
+				
+                game.pause();
 				game.setScreen(game.getPausescreen());
 
 			}

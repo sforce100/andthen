@@ -123,9 +123,7 @@ public class MainMenuScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(stage);
 		
 		
-		game.getMusic().setLooping(true);
-		game.getMusic().play();
-		game.getMusic().setVolume(15);
+		
 			
 	}
 	
@@ -192,7 +190,8 @@ public class MainMenuScreen extends AbstractScreen {
 
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
-				game.setScreen(game.getOptionScreen());
+				game.getOperatescreen().setParent(0);
+				game.setScreen(game.getOperatescreen());
 			}});
 		
 		help.setClickListener(new ClickListener(){

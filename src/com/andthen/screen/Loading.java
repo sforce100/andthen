@@ -69,6 +69,10 @@ public class Loading extends AbstractScreen{
 	public void show() {
 		// TODO Auto-generated method stub
 		
+		game.getMusic().setLooping(true);
+		game.getMusic().play();
+		game.getMusic().setVolume(15);
+		
 	}
 	public void render(float arg0) {
 		// TODO Auto-generated method stub

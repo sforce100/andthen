@@ -13,6 +13,7 @@ import com.andthen.enemys.Enemylevel1;
 import com.andthen.enemys.Enemylevel2;
 import com.andthen.guns.Gun;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -30,6 +31,10 @@ public class GameMap { // 构建地图
 	
 	private int result=3;
 	private int hp,kill;
+	private boolean soundclose=true;
+	
+	Sound  reloadsound = Gdx.audio.newSound(Gdx.files.internal("reload1.wav"));
+	Sound  gunsound = Gdx.audio.newSound(Gdx.files.internal("gunsound.wav"));
 
 	public GameMap(Stage s, MapModel m,Gun gun1,Gun gun2) {
 		main=gun1;
@@ -200,6 +205,9 @@ public class GameMap { // 构建地图
 	public void fire() {
 
 		if (player.getGun().getMagazineleft() != 0) {
+			if(soundclose){
+			gunsound.play();
+			}
 			player.shot();
 
 			boolean canshot = true;
@@ -220,6 +228,9 @@ public class GameMap { // 构建地图
 				}
 			}
 		} else {
+			if(soundclose){
+			reloadsound.play();
+			}
 			player.setDelay(1);
 			player.setReloadbegin(TimeUtils.nanoTime());
 		}
@@ -227,6 +238,9 @@ public class GameMap { // 构建地图
 	
 	//填装
 	public void reload(){
+		if(soundclose){
+		reloadsound.play();
+		}
 		player.setDelay(1);
 		player.setReloadbegin(TimeUtils.nanoTime());
 	}
@@ -267,4 +281,13 @@ public class GameMap { // 构建地图
 		this.kill = kill;
 	}
 
+	public boolean isSoundclose() {
+		return soundclose;
+	}
+
+	public void setSoundclose(boolean soundclose) {
+		this.soundclose = soundclose;
+	}
+
+	
 }

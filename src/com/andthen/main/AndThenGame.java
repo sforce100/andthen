@@ -12,6 +12,7 @@ import com.andthen.screen.LevelSelect1;
 import com.andthen.screen.LevelSelect2;
 import com.andthen.screen.Loading;
 import com.andthen.screen.MainMenuScreen;
+import com.andthen.screen.OperateScreen;
 import com.andthen.screen.OptionScreen;
 import com.andthen.screen.PauseScreen;
 import com.andthen.screen.ShopScreen;
@@ -37,6 +38,7 @@ public class AndThenGame extends Game {
 	private SuccessScreen successscreen;
 	private FailScreen failscreen;
 	private PauseScreen pausescreen;
+	private OperateScreen operatescreen;
 	
 	
 	private SharedPreferences sp;
@@ -84,6 +86,7 @@ public class AndThenGame extends Game {
 		successscreen =new SuccessScreen(this);
 		failscreen=new FailScreen(this);
 		pausescreen =new PauseScreen(this);
+		operatescreen =new OperateScreen(this);
 		
 	}
 	
@@ -222,5 +225,12 @@ public class AndThenGame extends Game {
 	public void setPausescreen(PauseScreen pausescreen) {
 		this.pausescreen = pausescreen;
 	}
+	public OperateScreen getOperatescreen() {
+		return operatescreen;
+	}
+	public void setOperatescreen(OperateScreen operatescreen) {
+		this.operatescreen = operatescreen;
+	}
+	
 
 }

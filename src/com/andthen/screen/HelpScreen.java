@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -25,6 +26,11 @@ public class HelpScreen extends AbstractScreen{
 	Texture tback;
 	Label lhelp, lmain;
 	BitmapFont font;
+	
+	private Texture resource ;
+	private TextureRegion background;
+	
+	
 	public HelpScreen(AndThenGame game){
 		super(game);
 		init();
@@ -50,6 +56,18 @@ public class HelpScreen extends AbstractScreen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
 		stage.act(Gdx.graphics.getDeltaTime());
+		
+		
+		
+		
+		
+		stage.getSpriteBatch().begin();
+		stage.getSpriteBatch().draw(background, 0, 0); // 绘制背景
+		stage.getSpriteBatch().end();
+		
+		
+		
+		
 		stage.draw();		
 	}
 
@@ -71,41 +89,42 @@ public class HelpScreen extends AbstractScreen{
 	
 	
 	private void init(){
+		
+		
+		
+		
+		
+		resource =  new Texture(Gdx.files.internal("helper.png"));
+		background=new TextureRegion(resource, 0, 0, 800, 480);
+		
+		
+		
 		font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
 		//返回主菜单的按钮
-		tback = new Texture(Gdx.files.internal("button1_480.png"));
-		NinePatch np = new NinePatch(tback, 7, 7, 9, 9);
-		back = new Button(np, np, np);
-		back.x = 100;
-		back.y = 100;
-		back.width=100f;
-		back.height=32f;
+
+
+		
+		
+		back = new Button(new TextureRegion(resource, 800,0, 84,84), new TextureRegion(resource, 800,84,84,84));
+		back.x = 91;
+		back.y = 347;
+		back.width=84f;
+		back.height=84f;
 		
 		back.setClickListener(new ClickListener() {
 			
 			public void click(Actor arg0, float arg1, float arg2) {
 				// TODO Auto-generated method stub
-				game.setScreen(new MainMenuScreen(game));
+				game.setScreen(game.getMenuScreen());
 			}
 		});
 		
 	
-		lhelp = new Label("back", new LabelStyle(new BitmapFont(), Color.RED), "返回");
-		lhelp.x = Gdx.graphics.getWidth()/2;
-		lhelp.y = Gdx.graphics.getHeight();
-		
-		
-		lmain = new Label("HelpScreen", new LabelStyle(font, Color.WHITE));
-//		lmain.setText("主菜单");
-		lmain.width = 200f;
-		lmain.height = 50f;
-		lmain.x = 200;
-		lmain.y = 200;
+
 		
 		stage=new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
 		stage.addActor(back);
-		stage.addActor(lhelp);
-		stage.addActor(lmain);
+
 	}
 
 }
