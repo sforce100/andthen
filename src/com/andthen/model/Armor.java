@@ -7,8 +7,56 @@ public class Armor {
 	int defence;
 	int is_lock;
 	int residue;
+	int x, y, w, h, sx, sy, sw, sh;
 	
-	
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public int getW() {
+		return w;
+	}
+	public void setW(int w) {
+		this.w = w;
+	}
+	public int getH() {
+		return h;
+	}
+	public void setH(int h) {
+		this.h = h;
+	}
+	public int getSx() {
+		return sx;
+	}
+	public void setSx(int sx) {
+		this.sx = sx;
+	}
+	public int getSy() {
+		return sy;
+	}
+	public void setSy(int sy) {
+		this.sy = sy;
+	}
+	public int getSw() {
+		return sw;
+	}
+	public void setSw(int sw) {
+		this.sw = sw;
+	}
+	public int getSh() {
+		return sh;
+	}
+	public void setSh(int sh) {
+		this.sh = sh;
+	}
 	public int getResidue() {
 		return residue;
 	}

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.andthen.map.LevelMap;
+import com.andthen.map.LevelMap2;
 import com.andthen.model.Armor;
 
 

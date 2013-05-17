@@ -14,6 +14,12 @@ public abstract class SqlOperatorBase {
 	
 	public SqlOperatorBase(Context context){
 		sqlHelper = new GameSqlHelper(context);	
+		db = sqlHelper.getWritableDatabase();
+	}
+	
+	public SqlOperatorBase(Context context, Boolean is_write){
+		sqlHelper = new GameSqlHelper(context);	
+		db = sqlHelper.getWritableDatabase();
 	}
 	
 	public void closeUserHelper(){

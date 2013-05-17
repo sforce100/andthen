@@ -17,10 +17,14 @@ public class Gun {
 	int is_lock;
 	int gun_cost;
 	int bullet_cost;
+	int x,y,w,h,sx,sy,sw,sh;
+	int state; //ÊÖÇ¹:1,  »úÇ¹:2
 	
 	int x0,y0;
 	int width,height;
 	int magazineleft;     //µ¯¼ĞÊ£ÓàÁ¿
+	
+	
 	
 	
 	
@@ -55,6 +59,78 @@ public class Gun {
 	}
 	
 
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setH(int h) {
+		this.h = h;
+	}
+
+	public int getSx() {
+		return sx;
+	}
+
+	public void setSx(int sx) {
+		this.sx = sx;
+	}
+
+	public int getSy() {
+		return sy;
+	}
+
+	public void setSy(int sy) {
+		this.sy = sy;
+	}
+
+	public int getSw() {
+		return sw;
+	}
+
+	public void setSw(int sw) {
+		this.sw = sw;
+	}
+
+	public int getSh() {
+		return sh;
+	}
+
+	public void setSh(int sh) {
+		this.sh = sh;
+	}
 
 	public int getDamage() {
 		return damage;

@@ -2,7 +2,7 @@ package com.andthen.map;
 
 //Ñ¡ÔñµØÍ¼
 //		db.execSQL("CREATE TABLE map (level integer, num integer, is_lock integer, get_star integer, req_star integer)");
-public class LevelMap {
+public class LevelMap2 {
 	int level;
 	int num;
 	int is_lock;
